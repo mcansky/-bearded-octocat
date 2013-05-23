@@ -26,6 +26,9 @@ describe Photo do
       it "should not have an image yet" do
         photo.image.blank?.should be_true
       end
+      it "should return empty string on url method" do
+        photo.url.should eq nil
+      end
     end
     describe "upload" do
       let(:image_path) { "#{Rails.root}/tmp/photo.jpg" }
@@ -33,7 +36,10 @@ describe Photo do
         photo.image = File.open(image_path)
       end
       it "should have a photo when one is save" do
-        photo.image.present?.should be_true
+        photo.image.blank?.should be_false
+      end
+      it "should return image url when url method is called" do
+        photo.url.should eq photo.image.url
       end
     end
   end

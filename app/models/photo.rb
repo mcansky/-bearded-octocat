@@ -4,6 +4,7 @@ class Photo < ActiveRecord::Base
   mount_uploader :image, ImageUploader
 
   def url
+    image.blank? ? nil : image.url
   end
 
   def age

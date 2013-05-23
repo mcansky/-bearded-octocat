@@ -8,5 +8,15 @@ class PhotosController < ApplicationController
     redirect_to :action => :index
   end
   def new
+    @photo = Photo.new
+  end
+  
+  def create
+    @photo = Photo.create(params[:photo])
+    if @photo.save
+      redirect_to action: :index
+    else
+      render :new
+    end
   end
 end

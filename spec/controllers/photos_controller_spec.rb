@@ -82,4 +82,13 @@ describe PhotosController do
       response.status.should eq 200 
     end
   end
+  describe "create" do
+    let(:image_path) { "#{Rails.root}/app/assets/images/photo.jpg" }
+    let(:photo_hash) { {desc: Faker::Lorem, image: File.open(image_path)} }
+    it "should create a file" do
+      post :create, :photo => photo_hash
+      response.status.should eq 302
+      response.should redirect_to photos_path
+    end
+  end
 end

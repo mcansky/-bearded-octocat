@@ -47,6 +47,7 @@ describe Photo do
     describe "score" do
       it "should have its score changed" do
         photo.score_up
+        photo.reload
         photo.score.should eq 1
       end
     end

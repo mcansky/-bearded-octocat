@@ -15,6 +15,7 @@ class Photo < ActiveRecord::Base
 
   def score_up
     self.score += 1
+    self.save
   end
 
   def young?

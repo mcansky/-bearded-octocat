@@ -12,4 +12,4 @@ my friends :
 the stream of photos :
 * contains the last 20 photos
 * they are sorted by score
-* old ones get hidden
+* old ones go down on the feed giving priority to newer ones

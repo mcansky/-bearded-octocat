@@ -76,4 +76,10 @@ describe PhotosController do
       assigns(:photos).first.should eq low_photo1
     end
   end
+  describe "upload form" do
+    it "should answer correctly" do
+      get :new
+      response.status.should eq 200 
+    end
+  end
 end

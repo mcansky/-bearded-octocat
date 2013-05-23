@@ -7,4 +7,6 @@ class PhotosController < ApplicationController
     @photo.score_up
     redirect_to :action => :index
   end
+  def new
+  end
 end

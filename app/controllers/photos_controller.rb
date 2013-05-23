@@ -1,5 +1,5 @@
 class PhotosController < ApplicationController
   def index
-    @photos = Photo.all
+    @photos = Photo.sorted_young.all
   end
 end

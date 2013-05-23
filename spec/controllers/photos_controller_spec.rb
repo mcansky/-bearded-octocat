@@ -13,6 +13,7 @@ describe PhotosController do
     end
   end
   describe "content check" do
+    let!(:photo) { FactoryGirl.create(:photo) }
     before :each do
       get :index
     end
@@ -39,7 +40,22 @@ describe PhotosController do
       assigns(:photos).count.should eq 1
     end
     it "should only display the young photos" do
-      assigns(:photos).first.id.should eq young.id
+      assigns(:photos).first.id.should eq young_photo.id
     end
+  end
+  describe "content sorting with score" do
+    let!(:low_photo1) { FactoryGirl.create(:photo) }
+    let!(:top_photo) { FactoryGirl.create(:photo) }
+    let!(:low_photo2) { FactoryGirl.create(:photo) }
+    let!(:old_photo) { FactoryGirl.create(:old_photo) }
+    before :each do
+      5.times { top_photo.score_up }
+      2.times { low_photo1.score_up }
+      get :index
+    end
+    subject { assigns(:photos) }
+    its(:count) { should eq 3 }
+    its(:first) { should eq top_photo }
+    its(:last) { should eq low_photo2 }
   end
 end

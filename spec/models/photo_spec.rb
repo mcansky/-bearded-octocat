@@ -11,19 +11,30 @@ describe Photo do
     it { should respond_to(:score_up) }
     it { should respond_to(:age) }
   end
-  describe "process" do
+  context "blank photo" do
     let(:photo) { FactoryGirl.create(:photo) }
-    it "should have a string as desc" do
-      photo.desc.class.should eq String
+    describe "init" do
+      it "should have a string as desc" do
+        photo.desc.class.should eq String
+      end
+      it "should have an age in seconds" do
+        photo.age.class.should eq Float
+      end
+      it "should have an Integer score" do
+        photo.score.class.should eq Fixnum
+      end
+      it "should not have an image yet" do
+        photo.image.blank?.should be_true
+      end
     end
-    it "should have an age in seconds" do
-      photo.age.class.should eq Float
-    end
-    it "should have an Integer score" do
-      photo.score.class.should eq Fixnum
-    end
-    it "should not have an image yet" do
-      photo.image.blank?.should be_true
+    describe "upload" do
+      let(:image_path) { "#{Rails.root}/tmp/photo.jpg" }
+      before :each do
+        photo.image = File.open(image_path)
+      end
+      it "should have a photo when one is save" do
+        photo.image.present?.should be_true
+      end
     end
   end
 end

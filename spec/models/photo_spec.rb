@@ -22,5 +22,8 @@ describe Photo do
     it "should have an Integer score" do
       photo.score.class.should eq Fixnum
     end
+    it "should not have an image yet" do
+      photo.image.blank?.should be_true
+    end
   end
 end

@@ -3,6 +3,8 @@ class Photo < ActiveRecord::Base
   attr_accessible :desc, :image, :score
   mount_uploader :image, ImageUploader
 
+  scope :young, lambda { where("created_at > ?", Time.zone.now - 7.days ) }
+
   def url
     image.blank? ? nil : image.url
   end

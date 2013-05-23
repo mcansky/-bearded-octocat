@@ -74,4 +74,14 @@ describe Photo do
       end
     end
   end
+  context "old and new together, scopes" do
+    let!(:young_photo) { FactoryGirl.create(:photo) }
+    let!(:old_photo) { FactoryGirl.create(:old_photo) }
+    it "should not return old ones" do
+      Photo.young.include?(old_photo).should be_false
+    end
+    it "should return only young ones" do
+      Photo.young.include?(young_photo).should be_true
+    end
+  end
 end

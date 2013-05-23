@@ -65,17 +65,15 @@ describe Photo do
   end
   context "old photo" do
     let(:photo) { FactoryGirl.create(:photo) }
-    describe "age, after 7.2 days" do
-      before :each do
-        photo.created_at = Time.now
-        Timecop.freeze(Time.now + 7.days + 10)
-      end
-      it "should not be young after 7 days and 10 sec" do
-        photo.young?.should be_false
-      end
-      it "should be old after 7 days and 10 sec" do
-        photo.old?.should be_true
-      end
+    before :each do
+      photo.created_at = Time.now
+      Timecop.freeze(Time.now + 7.days + 10)
+    end
+    it "should not be young after 7 days and 10 sec" do
+      photo.young?.should be_false
+    end
+    it "should be old after 7 days and 10 sec" do
+      photo.old?.should be_true
     end
   end
   context "old and new together, scopes" do
@@ -86,6 +84,25 @@ describe Photo do
     end
     it "should return only young ones" do
       Photo.young.include?(young_photo).should be_true
+    end
+  end
+  context "sorted photos" do
+    let!(:low_photo1) { FactoryGirl.create(:photo) }
+    let!(:top_photo) { FactoryGirl.create(:photo) }
+    let!(:low_photo2) { FactoryGirl.create(:photo) }
+    let!(:old_photo) { FactoryGirl.create(:old_photo) }
+    before :each do
+      5.times { top_photo.score_up }
+      2.times { low_photo1.score_up }
+    end
+    it "should return only young ones" do
+      Photo.sorted_young.count.should eq 3
+    end
+    it "should have top photo as first" do
+      Photo.sorted_young.first.should eq top_photo
+    end
+    it "should have low_photo2 as last" do
+      Photo.sorted_young.last.should eq low_photo2
     end
   end
 end

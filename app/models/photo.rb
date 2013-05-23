@@ -4,6 +4,7 @@ class Photo < ActiveRecord::Base
   mount_uploader :image, ImageUploader
 
   scope :young, lambda { where("created_at > ?", Time.zone.now - 7.days ) }
+  scope :sorted_young, young.order("score DESC")
 
   def url
     image.blank? ? nil : image.url

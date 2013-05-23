@@ -10,6 +10,8 @@ describe Photo do
     it { should respond_to(:url) }
     it { should respond_to(:score_up) }
     it { should respond_to(:age) }
+    it { should respond_to(:young?) }
+    it { should respond_to(:old?) }
   end
   context "blank photo" do
     let(:photo) { FactoryGirl.create(:photo) }
@@ -46,6 +48,14 @@ describe Photo do
       it "should have its score changed" do
         photo.score_up
         photo.score.should eq 1
+      end
+    end
+    describe "age, initially" do
+      it "should be young initially" do
+        photo.young?.should be_true
+      end
+      it "should not be old initially" do
+        photo.old?.should be_false
       end
     end
   end

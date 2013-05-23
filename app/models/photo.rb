@@ -14,4 +14,12 @@ class Photo < ActiveRecord::Base
   def score_up
     self.score += 1
   end
+
+  def young?
+    true if age < 7.days
+  end
+
+  def old?
+    !young?
+  end
 end

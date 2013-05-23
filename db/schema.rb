@@ -16,9 +16,9 @@ ActiveRecord::Schema.define(:version => 20130523143046) do
   create_table "photos", :force => true do |t|
     t.text     "desc"
     t.string   "image"
-    t.integer  "score"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.integer  "score",      :default => 0
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
   end
 
 end

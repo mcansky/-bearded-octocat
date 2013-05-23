@@ -7,6 +7,7 @@ class Photo < ActiveRecord::Base
   end
 
   def age
+    Time.now - created_at
   end
 
   def score_up

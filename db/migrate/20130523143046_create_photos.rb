@@ -3,7 +3,7 @@ class CreatePhotos < ActiveRecord::Migration
     create_table :photos do |t|
       t.text :desc
       t.string :image
-      t.integer :score
+      t.integer :score, :default => 0
 
       t.timestamps
     end

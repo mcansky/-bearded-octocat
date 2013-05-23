@@ -58,4 +58,37 @@ describe PhotosController do
     its(:first) { should eq top_photo }
     its(:last) { should eq low_photo2 }
   end
+  describe "score up" do
+    let!(:low_photo1) { FactoryGirl.create(:photo) }
+    let!(:top_photo) { FactoryGirl.create(:photo) }
+    let!(:low_photo2) { FactoryGirl.create(:photo) }
+    let!(:old_photo) { FactoryGirl.create(:old_photo) }
+    before :each do
+      2.times { top_photo.score_up }
+      1.times { low_photo1.score_up }
+      get :index
+    end
+    subject { assigns(:photos) }
+    its(:first) { should eq top_photo }
+    it "should change order after a put" do
+      2.times { put :update, :id => low_photo1.id }
+      get :index
+      assigns(:photos).first.should eq low_photo1
+    end
+  end
+  describe "upload form" do
+    it "should answer correctly" do
+      get :new
+      response.status.should eq 200 
+    end
+  end
+  describe "create" do
+    let(:image_path) { "#{Rails.root}/app/assets/images/photo.jpg" }
+    let(:photo_hash) { {desc: Faker::Lorem, image: File.open(image_path)} }
+    it "should create a file" do
+      post :create, :photo => photo_hash
+      response.status.should eq 302
+      response.should redirect_to photos_path
+    end
+  end
 end

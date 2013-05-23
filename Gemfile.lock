@@ -54,6 +54,7 @@ GEM
       railties (>= 3.0.0)
     faker (1.1.2)
       i18n (~> 0.5)
+    flickraw (0.9.6)
     hike (1.2.2)
     i18n (0.6.1)
     journey (1.0.4)
@@ -145,6 +146,8 @@ GEM
       kgio (~> 2.6)
       rack
       raindrops (~> 0.7)
+    zurb-foundation (4.0.9)
+      sass (>= 3.2.0)
 
 PLATFORMS
   ruby
@@ -156,6 +159,7 @@ DEPENDENCIES
   coffee-rails (~> 3.2.1)
   factory_girl_rails
   faker
+  flickraw
   jquery-rails
   rails (= 3.2.13)
   rails_config
@@ -168,3 +172,4 @@ DEPENDENCIES
   timecop
   uglifier (>= 1.0.3)
   unicorn
+  zurb-foundation (~> 4.0.0)

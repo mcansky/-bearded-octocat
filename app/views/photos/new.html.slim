@@ -1,0 +1,10 @@
+= form_for @photo do |f|
+  .row
+    .large-10.columns
+      label Desc
+      = f.text_field :desc
+      br
+      label File
+      = f.file_field :image
+      br
+      = f.submit

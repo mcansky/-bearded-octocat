@@ -1,0 +1,3 @@
+- @photos.each_slice(3) do |row|
+  .row
+    = render :partial => "photo", :collection => row

@@ -59,4 +59,19 @@ describe Photo do
       end
     end
   end
+  context "old photo" do
+    let(:photo) { FactoryGirl.create(:photo) }
+    describe "age, after 7.2 days" do
+      before :each do
+        photo.created_at = Time.now
+        Timecop.freeze(Time.now + 7.days + 10)
+      end
+      it "should not be young after 7 days and 10 sec" do
+        photo.young?.should be_false
+      end
+      it "should be old after 7 days and 10 sec" do
+        photo.old?.should be_true
+      end
+    end
+  end
 end

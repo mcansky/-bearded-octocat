@@ -1,6 +1,6 @@
 .large-4.columns
   .panel
-    = link_to "+1", "#"
+    = link_to "+1", {action: :update, id: photo.id}, method: :put
     p
       img width="400" height="300" src="#{photo.url}"
     p

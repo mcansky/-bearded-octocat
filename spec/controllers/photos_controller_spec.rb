@@ -58,4 +58,22 @@ describe PhotosController do
     its(:first) { should eq top_photo }
     its(:last) { should eq low_photo2 }
   end
+  describe "score up" do
+    let!(:low_photo1) { FactoryGirl.create(:photo) }
+    let!(:top_photo) { FactoryGirl.create(:photo) }
+    let!(:low_photo2) { FactoryGirl.create(:photo) }
+    let!(:old_photo) { FactoryGirl.create(:old_photo) }
+    before :each do
+      2.times { top_photo.score_up }
+      1.times { low_photo1.score_up }
+      get :index
+    end
+    subject { assigns(:photos) }
+    its(:first) { should eq top_photo }
+    it "should change order after a put" do
+      2.times { put :update, :id => low_photo1.id }
+      get :index
+      assigns(:photos).first.should eq low_photo1
+    end
+  end
 end

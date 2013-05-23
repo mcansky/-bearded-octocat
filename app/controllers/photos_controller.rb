@@ -1,5 +1,5 @@
 class PhotosController < ApplicationController
   def index
-    @photos = []
+    @photos = Photo.all
   end
 end

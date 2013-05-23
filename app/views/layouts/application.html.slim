@@ -23,6 +23,35 @@ head
 
 body
 
+  /! Header and Nav
+  nav.top-bar
+    HEY
+  /! End Header and Nav
+  /! Main Grid Section
   == yield
+  .row
+    .large-12.columns
+      .panel
+        h5 Lost photos ?
+        p Previous photos have been lost in time.
+  /! End Grid Section
+  /! Footer
+  footer.row
+    .large-12.columns
+      hr/
+      .row
+        .large-6.columns
+          p &copy; Copyleft no one at all.
+        .large-6.columns
+          ul.inline-list.right
+            li
+              a href="#"
+            li
+              a href="#"
+            li
+              a href="#"
+            li
+              a href="#"
+
 
   = javascript_include_tag "application"

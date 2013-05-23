@@ -42,5 +42,11 @@ describe Photo do
         photo.url.should eq photo.image.url
       end
     end
+    describe "score" do
+      it "should have its score changed" do
+        photo.score_up
+        photo.score.should eq 1
+      end
+    end
   end
 end

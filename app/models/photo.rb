@@ -12,5 +12,6 @@ class Photo < ActiveRecord::Base
   end
 
   def score_up
+    self.score += 1
   end
 end

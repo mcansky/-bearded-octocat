@@ -36,7 +36,7 @@ describe Photo do
       end
     end
     describe "upload" do
-      let(:image_path) { "#{Rails.root}/tmp/photo.jpg" }
+      let(:image_path) { "#{Rails.root}/app/assets/images/photo.jpg" }
       before :each do
         photo.image = File.open(image_path)
       end

@@ -26,4 +26,17 @@ describe PhotosController do
       assigns(:photos).first.class.should eq Photo
     end
   end
+  describe "content sorting" do
+    let!(:young_photo) { FactoryGirl.create(:photo) }
+    let!(:old_photo) { FactoryGirl.create(:old_photo) }
+    before :each do
+      get :index
+    end
+    it "should only list 1 photo" do
+      assigns(:photos).count.should eq 1
+    end
+    it "should only display the young photos" do
+      assigns(:photos).first.id.should eq young.id
+    end
+  end
 end

@@ -10,6 +10,7 @@ end
 gem 'jquery-rails'
 gem 'slim'
 gem 'carrierwave'
+gem 'flickraw'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'

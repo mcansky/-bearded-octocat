@@ -1,6 +1,6 @@
 # encoding: UTF-8
 class Photo < ActiveRecord::Base
-  attr_accessible :desc, :image, :score
+  attr_accessible :desc, :image, :score, :remote_image_url
   mount_uploader :image, ImageUploader
 
   scope :young, lambda { where("created_at > ?", Time.zone.now - 7.days ) }

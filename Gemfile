@@ -23,6 +23,7 @@ group :test do
   gem "shoulda"
   gem "cane"
   gem "faker"
+  gem "timecop"
 end
 
 gem 'bcrypt-ruby', '~> 3.0.0'

@@ -1,6 +1,9 @@
 require 'spec_helper'
 
 describe PhotosController do
+  after :each do
+    Photo.destroy_all
+  end
   describe "index" do
     it "should exist as action" do
       expect { get :index }.to_not raise_error AbstractController::ActionNotFound

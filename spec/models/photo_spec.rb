@@ -1,6 +1,9 @@
 require 'spec_helper'
 
 describe Photo do
+  after :each do
+    Photo.destroy_all
+  end
   describe "basics" do
     # attributes
     it { should respond_to(:desc) }
